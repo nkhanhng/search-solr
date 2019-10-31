@@ -5,8 +5,11 @@ const cors = require('cors');
 const http = require('http');
 const request = require('request')
 const baseUrl = 'http://localhost:8983/solr/quotes/select?q='
+const path = require('path')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
+
+app.use(express.static(__dirname + '/view'));
 
 const corsOptions = {
     origin: 'http://localhost:3000',
@@ -41,10 +44,13 @@ app.route('/api/search/:query').get((req, resultToSend) => {
         }
     },function(error, response, body) {
         if (!error && response.statusCode == 200) {
-            console.log(body)
             resultToSend.json(body)
         }
     })
+})
+
+app.get('/',(req,res)=>{
+    res.sendFile(path.join(__dirname+'/view/search.html'));
 })
 
 app.listen(3000,()=>{
