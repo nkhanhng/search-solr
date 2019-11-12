@@ -18,10 +18,10 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
-app.route('/api/search/:query').get((req, resultToSend) => {
-    let q = req.params;
-    const {query} = q
-    let queryString = query.replace("=",":");
+app.route('/api/search').get((req, resultToSend) => {
+    let q = req.query.text;
+    // const {query} = q
+    // let queryString = query.replace("=",":");
 
     // pagination
     let pageNumber = req.query.page;
@@ -39,7 +39,7 @@ app.route('/api/search/:query').get((req, resultToSend) => {
         uri: baseUrl,
         method: 'POST',
         json:{
-            "query":`${queryString}`,
+            "query":`text:${q}`,
             "offset": `${offset}`
         }
     },function(error, response, body) {

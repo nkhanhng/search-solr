@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.bootpag.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
     <link rel="stylesheet" href="./search.css" />
     <title>Tâm Duck Go</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Tâm Duck Go</h1>
 
     <input type="text" name="text" class="search-input" />
@@ -19,50 +30,74 @@
     <div class="btn" role="button">Search</div>
 
     <div class="result"></div>
+    <div class="pagination"></div>
 
     <script>
-        $(function () {
-            var api_url = "http://localhost:3000/api/search/";
+      var page = 1;
+      var totalPage = 0;
+      $(function() {
+        var api_url = "http://localhost:3000/api/search/";
 
-            var getResult = function () {
-                var text = $(".search-input").val();
-                if (text) {
-                    var inputName = $(".search-input").attr("name");
-                    $.ajax({
-                        url: api_url + inputName + "=" + text,
-                        type: "GET",
-                        success: function (response) {
-                            var result = response.response.docs;
-                            var numFound = response.response.numFound;
-                            $(".result").html("");
-                            var content = "";
-                            result.forEach(quote => {
-                                content +=
-                                    '<div class="quote">' +
-                                    "<h3>" +
-                                    quote.text +
-                                    "</h3>" +
-                                    "<p>" +
-                                    quote.author[0] +
-                                    "</p>" +
-                                    "</div>";
-                            });
-                            $(".result").append(content);
-                        },
-                        error: function (error) {
-                            console.log(error);
-                        }
-                    });
+        var getResult = function() {
+          var text = $(".search-input").val();
+          if (text) {
+            fetchData(text);
+          }
+        };
 
-                }
-            };
-
-            $(".btn").click(getResult);
-            $(".search-input").keypress(function () {
-                if (event.which == 13) getResult();
-            })
+        $(".btn").click(getResult);
+        $(".search-input").keypress(function() {
+          if (event.which == 13) getResult();
         });
-    </script>
-</body>
+        $(".pagination")
+              .bootpag({
+                total: totalPage,
+                maxVisible: 10
+              })
+              .on("page", function(event, num) {
+                fetchData(text, num);
+              });
+      });
 
+      function fetchData(query, num) {
+        $.ajax({
+          url: "http://localhost:3000/api/search/",
+          type: "GET",
+          data: {
+            text: query,
+            page: num
+          },
+          success: function(response) {
+            var result = response.response.docs;
+            var numFound = response.response.numFound;
+            totalPage = numFound / 10;
+            $(".result").html("");
+            var content = "";
+            result.forEach(quote => {
+              content +=
+                '<div class="quote">' +
+                "<h3>" +
+                quote.text +
+                "</h3>" +
+                "<p>" +
+                quote.author[0] +
+                "</p>" +
+                "</div>";
+            });
+            $(".result").append(content);
+            renderPagination()
+          },
+          error: function(error) {
+            console.log(error);
+          }
+        });
+      }
+
+      function renderPagination(query,totalPage) {
+        $('.result').DataTable({
+
+        })
+      }
+    </script>
+  </body>
 </html>
