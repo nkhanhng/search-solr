@@ -8,9 +8,10 @@
 import scrapy
 
 
-class NewquotesItem(scrapy.Item):
+class ComputerItem(scrapy.Item):
     # define the fields for your item here like:
-    title = scrapy.Field()
-    author = scrapy.Field()
-    tags = scrapy.Field()
+    product_name = scrapy.Field()
+    product_description = scrapy.Field()
+    product_price = scrapy.Field()
+    product_imagelink = scrapy.Field()
     pass

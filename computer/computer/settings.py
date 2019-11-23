@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for newQuotes project
+# Scrapy settings for computer project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'newQuotes'
+BOT_NAME = 'computer'
 
-SPIDER_MODULES = ['newQuotes.spiders']
-NEWSPIDER_MODULE = 'newQuotes.spiders'
+SPIDER_MODULES = ['computer.spiders']
+NEWSPIDER_MODULE = 'computer.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'newQuotes (+http://www.yourdomain.com)'
+#USER_AGENT = 'computer (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +47,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'newQuotes.middlewares.NewquotesSpiderMiddleware': 543,
+#    'computer.middlewares.ComputerSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'newQuotes.middlewares.NewquotesDownloaderMiddleware': 543,
+#    'computer.middlewares.ComputerDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'newQuotes.pipelines.NewquotesPipeline': 300,
+   'computer.pipelines.ComputerPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
