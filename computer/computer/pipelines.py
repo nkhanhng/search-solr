@@ -12,8 +12,8 @@ class ComputerPipeline(object):
             'localhost',
             27017
         )
-        db = self.conn['laptopsDb']
-        self.collection = db['laptopsDb']
+        db = self.conn['Spiderum']
+        self.collection = db['Spiderum']
 
     def process_item(self, item, spider):
         self.collection.insert(dict(item))

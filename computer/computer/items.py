@@ -8,10 +8,10 @@
 import scrapy
 
 
-class ComputerItem(scrapy.Item):
+class PostItem(scrapy.Item):
     # define the fields for your item here like:
-    product_name = scrapy.Field()
-    product_description = scrapy.Field()
-    product_price = scrapy.Field()
-    product_imagelink = scrapy.Field()
+    post_title = scrapy.Field()
+    post_author = scrapy.Field()
+    post_content = scrapy.Field()
+    post_imagelink = scrapy.Field()
     pass
