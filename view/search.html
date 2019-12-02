@@ -10,7 +10,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./js/jquery.bootpag.min.js"></script>
+    <script type="text/javascript" src="./js/twbs-pagination.js"></script>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -24,80 +24,64 @@
 
   <body>
     <h1>Tâm Duck Go</h1>
-
-    <input type="text" name="text" class="search-input" />
+    
+    <input type="text" name="text" id="search-input" />
 
     <div class="btn" role="button">Search</div>
 
     <div class="result"></div>
-    <div class="pagination"></div>
+    <div id="pagination"></div>
 
     <script>
       var page = 1;
       var totalPage = 0;
-      $(function() {
-        var api_url = "http://localhost:3000/api/search/";
-
+      $(function(){
+        var api_url = 'http://localhost:3000/api/search/';
+        var pageNumber = 1;
         var getResult = function() {
-          var text = $(".search-input").val();
-          if (text) {
-            fetchData(text);
+            var text = $("#search-input").val();
+            console.log(text)
+            if(text){
+              fetchData(text)
+              $('#pagination').twbsPagination({
+                totalPages: 10,
+                visiblePages: 6,
+                next: 'Next',
+                prev: 'Prev',
+                onPageClick: function (event,page) {
+                  fetchData(text,page)
+                }
+              })
+            }
           }
-        };
+
+        function fetchData(text,page) {
+          $.ajax({
+              url: api_url,
+              type: "GET",
+              data:{
+                text,
+                page: page ? page : pageNumber
+              },
+              success: function (response) {
+                var result = response.response.docs;
+                var numFound = response.response.numFound;
+                console.log(result)
+                console.log(numFound)
+              },
+              error: function(error) {
+                console.log(error)
+              }
+            })
+        }
+
+        
 
         $(".btn").click(getResult);
         $(".search-input").keypress(function() {
           if (event.which == 13) getResult();
         });
-        $(".pagination")
-              .bootpag({
-                total: totalPage,
-                maxVisible: 10
-              })
-              .on("page", function(event, num) {
-                fetchData(text, num);
-              });
-      });
-
-      function fetchData(query, num) {
-        $.ajax({
-          url: "http://localhost:3000/api/search/",
-          type: "GET",
-          data: {
-            text: query,
-            page: num
-          },
-          success: function(response) {
-            var result = response.response.docs;
-            var numFound = response.response.numFound;
-            totalPage = numFound / 10;
-            $(".result").html("");
-            var content = "";
-            result.forEach(quote => {
-              content +=
-                '<div class="quote">' +
-                "<h3>" +
-                quote.text +
-                "</h3>" +
-                "<p>" +
-                quote.author[0] +
-                "</p>" +
-                "</div>";
-            });
-            $(".result").append(content);
-            renderPagination()
-          },
-          error: function(error) {
-            console.log(error);
-          }
-        });
-      }
-
-      function renderPagination(query,totalPage) {
-        $('.result').DataTable({
-
-        })
-      }
-    </script>
+      })
+      </script>
   </body>
 </html>

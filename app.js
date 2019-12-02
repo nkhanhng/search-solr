@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const http = require('http');
 const request = require('request')
-const baseUrl = 'http://localhost:8983/solr/quotes/select?q='
+const baseUrl = 'http://localhost:8983/solr/new_core/select?q='
 const path = require('path')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
@@ -39,7 +39,7 @@ app.route('/api/search').get((req, resultToSend) => {
         uri: baseUrl,
         method: 'POST',
         json:{
-            "query":`text:${q}`,
+            "query":`post_title:${q}`,
             "offset": `${offset}`
         }
     },function(error, response, body) {
