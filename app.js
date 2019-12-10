@@ -20,8 +20,6 @@ app.use(cors(corsOptions))
 
 app.route('/api/search').get((req, resultToSend) => {
     let q = req.query.text;
-    // const {query} = q
-    // let queryString = query.replace("=",":");
 
     // pagination
     let pageNumber = req.query.page;

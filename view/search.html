@@ -24,7 +24,7 @@
 
   <body>
     <h1>Tâm Duck Go</h1>
-    
+
     <input type="text" name="text" id="search-input" />
 
     <div class="btn" role="button">Search</div>
@@ -34,54 +34,80 @@
 
     <script>
       var page = 1;
-      var totalPage = 0;
-      $(function(){
-        var api_url = 'http://localhost:3000/api/search/';
+      var limit = 10;
+      $(function() {
+        var api_url = "http://localhost:3000/api/search/";
         var pageNumber = 1;
+        var totalPage;
         var getResult = function() {
-            var text = $("#search-input").val();
-            console.log(text)
-            if(text){
-              fetchData(text)
-              $('#pagination').twbsPagination({
-                totalPages: 10,
-                visiblePages: 6,
-                next: 'Next',
-                prev: 'Prev',
-                onPageClick: function (event,page) {
-                  fetchData(text,page)
-                }
-              })
-            }
+          var text = $("#search-input").val();
+          console.log(text)
+          if (text) {
+            fetchData(text,pageNumber,applyPagination);
+            // applyPagination(text,totalPage)
           }
-
-        function fetchData(text,page) {
-          $.ajax({
-              url: api_url,
-              type: "GET",
-              data:{
-                text,
-                page: page ? page : pageNumber
-              },
-              success: function (response) {
-                var result = response.response.docs;
-                var numFound = response.response.numFound;
-                console.log(result)
-                console.log(numFound)
-              },
-              error: function(error) {
-                console.log(error)
-              }
-            })
+        };
+        
+        function applyPagination(text,totalPage) {
+          $("#pagination").twbsPagination({
+            totalPages: totalPage,
+            visiblePages: 6,
+            next: "Next",
+            prev: "Prev",
+            onPageClick: function(event, page) {
+              fetchData(text, page);
+            }
+          });
         }
 
-        
+        function fetchData(text, page = 1, callback) {
+          $.ajax({
+            url: api_url,
+            async: true,
+            type: "GET",
+            data: {
+              text,
+              page
+            },
+            success: function(response) {
+              var result = response.response.docs;
+              var numFound = response.response.numFound;
+              totalPage = Math.ceil(numFound/limit);
+              console.log(totalPage)
+              $(".result").html("");
+              var content = "";
+              result.forEach(quote => {
+                content +=
+                  '<div class="quote">' +
+                    "<h3>" +
+                    quote.post_title +
+                    "</h3>" +
+                    "<small>" +
+                    quote.post_author +
+                    "</small>" +
+                    "<img " + "src=" + quote.post_imagelink + ">" +
+                    "<p>"+
+                    quote.post_content + 
+                    "</p>"
+                  "</div>";
+              });
+              $(".result").append(content);
+              callback(current,totalPage);
+            },
+            error: function(error) {
+              console.log(error);
+            }
+          });
+          
+        }
 
         $(".btn").click(getResult);
-        $(".search-input").keypress(function() {
-          if (event.which == 13) getResult();
+        $(document).on("keypress", function(e) {
+          if (e.which == 13) {
+            getResult();
+          }
         });
-      })
-      </script>
+      });
+    </script>
   </body>
 </html>
