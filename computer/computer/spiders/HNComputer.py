@@ -13,7 +13,7 @@ def get_data(res):
     items = PostItem()
     items['post_title'] = title
     items['post_author'] = author
-    items['post_content'] = "#".join(content)
+    items['post_content'] = "".join(content)
     if not image:
         items['post_imagelink'] = "default"
     else:
