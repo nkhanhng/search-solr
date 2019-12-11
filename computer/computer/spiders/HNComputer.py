@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from ..items import PostItem
-
+import re
 
 def get_data(res):
     title = res.meta.get('title')[0]
     image = res.css(".fr-dib::attr(src)").extract()
     author = res.css(".author .username a::text").extract()[0]
     content = res.css("#post-content-view-edit div+ div::text").extract()
-    # print("#".join(content))
-    # print()
+    # print(author)
+    # print(re.sub('^\s+|\s+$|\s+(?=\s)','',author))
     items = PostItem()
     items['post_title'] = title
-    items['post_author'] = author
+    items['post_author'] = re.sub('^\s+|\s+$|\s+(?=\s)','',author)
     items['post_content'] = "".join(content)
     if not image:
         items['post_imagelink'] = "default"
