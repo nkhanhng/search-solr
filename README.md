@@ -22,6 +22,6 @@
  run command "scrapy crawl HNComputer -o filename.json <br/>
 
 ### Index data to solr server by following these command:
-  bin/solr create -c yourcorename
+  bin/solr create -c yourcorename<br/>
   bin/solr post -c yourcorename path/to/filename.json
   
