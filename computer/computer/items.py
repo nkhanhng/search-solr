@@ -14,4 +14,5 @@ class PostItem(scrapy.Item):
     post_author = scrapy.Field()
     post_content = scrapy.Field()
     post_imagelink = scrapy.Field()
+    url_link = scrapy.Field()
     pass
