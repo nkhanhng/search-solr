@@ -1,6 +1,7 @@
-h1{
+h1 {
     text-align: center;
 }
+
 input[type=text] {
     width: 82%;
     padding: 12px 20px;
@@ -11,52 +12,76 @@ input[type=text] {
     box-sizing: border-box;
 }
 
-.btn{
+.btn {
     text-align: center;
-    border: 1px solid;
-    padding: 5px;
+    /* border: 1px solid; */
+    /* padding: 5px; */
     margin-left: 40%;
     margin-right: 40%;
-}
-
-.btn:hover{
+    padding: 4px 25px;
+    font-size: 24px;
+    text-align: center;
     cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px #999;
 }
 
+.btn:hover {
+    cursor: pointer;
+    background-color: #3e8e41
+}
+
+.btn:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#search_button {
+    position: relative;
+    bottom: 228px;
+    display: block;
+    left: 7px;
+}
 
 .validate-input {
     position: relative;
-  }
+}
 
 .wrap-input100 {
-  width: 100%;
-  background-color: #fff;
-  border-radius: 31px;
-  margin-bottom: 16px;
-  position: relative;
-  z-index: 1;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 31px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+    display: inline;
 }
 
 input.input100 {
     height: 40px;
     padding: 0 35px 0 35px;
-  }
+}
 
 .input100 {
-  position: relative;
-  display: block;
-  width: 100%;
-  background: #fff;
-  border-radius: 31px;
-  font-family: Ubuntu-Bold;
-  font-size: 18px;
-  color: #8f8fa1;
-  line-height: 1.2;
+    position: relative;
+    display: block;
+    width: 100%;
+    background: #fff;
+    border-radius: 31px;
+    font-family: Ubuntu-Bold;
+    font-size: 18px;
+    color: #8f8fa1;
+    line-height: 1.2;
 }
 
 input {
-	outline: none;
-	border: none;
+    outline: none;
+    border: none;
 }
 
 .wFncld {
@@ -81,7 +106,7 @@ input {
     width: 100%;
 }
 
-#search_icon{
+#search_icon {
     position: relative;
     top: -59px;
     left: 126px;
@@ -89,10 +114,10 @@ input {
 
 #grad1 {
     background: red;
-    background: -webkit-linear-gradient(left, orange , yellow, green, blue, violet, cyan);
+    background: -webkit-linear-gradient(left, orange, yellow, green, blue, violet, cyan);
     background: -o-linear-gradient(right, orange, yellow, green, blue, violet, cyan);
     background: -moz-linear-gradient(right, orange, yellow, green, blue, violet, cyan);
-    background: linear-gradient(to right, orange , yellow, green, blue, violet, cyan);
+    background: linear-gradient(to right, orange, yellow, green, blue, violet, cyan);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 260%;
