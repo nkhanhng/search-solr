@@ -1,6 +1,6 @@
 # fuckfuckgo
 
-##Requirements
+## Requirements
 
 - Nodejs : install nvm 
   + curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
@@ -12,16 +12,16 @@
 - Scrapy : install scrapy
   + Python3: pip install Scrapy
  
-##Usage
+## Usage
 
-###run server nodejs 
+### run server nodejs 
   npm start
   
-###run scrapy:
+### run scrapy:
  checkout branch to "scrapy" <br/>
  run command "scrapy crawl HNComputer -o filename.json <br/>
 
-###Index data to solr server by following these command:
+### Index data to solr server by following these command:
   bin/solr create -c yourcorename
   bin/solr post -c yourcorename path/to/filename.json
   
