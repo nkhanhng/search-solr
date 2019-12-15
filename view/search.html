@@ -45,6 +45,11 @@
         <li><input type="checkbox" name="post_imagelink" value="post_imagelink" id="home_dec" class="Checkbox"> Image</li>
         <li><input type="checkbox" name="post_content" value="post_content" id="home_ent" class="Checkbox"> Content</li>
     </ul>
+    <label>Sort</label>
+    <select class="form-control form-control-sm sort">
+      <option value="asc">Asc</option>
+      <option value="desc">Desc</option>
+    </select>
     <div class="btn" role="button">Search</div>
 
     <div class="result"></div>
@@ -80,11 +85,10 @@
 
         function fetchData(text, page = 1, callback) {
           var option = $('.options option:selected').attr('name');
-          var limit = $('.limit option:selected').val();
           var fieldList = $('.Checkbox:checked').map(function() {
                         return this.value;
                     }).get().join(', ')
-          console.log(fieldList)
+          var sortType = option + " " + $('.sort option:selected').val();
           $.ajax({
             url: api_url,
             async: true,
@@ -93,8 +97,8 @@
               text,
               page,
               searchOption: option,
-              limit,
-              fields: fieldList
+              fields: fieldList,
+              sort: sortType
             },
             success: function(response) {
               var result = response.response.docs;
