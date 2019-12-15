@@ -43,9 +43,13 @@ input[type=text] {
 
 #search_button {
     position: relative;
-    bottom: 228px;
+    bottom: 34px;
     display: block;
-    left: 7px;
+    left: 2px;
+    background: -webkit-linear-gradient(left, orange, violet);
+    background: -o-linear-gradient(right, orange, violet);
+    background: -moz-linear-gradient(right, orange, violet);
+    background: linear-gradient(to right, orange, violet);
 }
 
 .validate-input {
@@ -114,10 +118,10 @@ input {
 
 #grad1 {
     background: red;
-    background: -webkit-linear-gradient(left, orange, yellow, green, blue, violet, cyan);
-    background: -o-linear-gradient(right, orange, yellow, green, blue, violet, cyan);
-    background: -moz-linear-gradient(right, orange, yellow, green, blue, violet, cyan);
-    background: linear-gradient(to right, orange, yellow, green, blue, violet, cyan);
+    background: -webkit-linear-gradient(left, yellow, green, orange, violet, blue, cyan);
+    background: -o-linear-gradient(right, yellow, green, orange, violet, blue, cyan);
+    background: -moz-linear-gradient(right, yellow, green, orange, violet, blue, cyan);
+    background: linear-gradient(to right, yellow, green, orange, violet, blue, cyan);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 260%;
