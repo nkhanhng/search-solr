@@ -86,3 +86,15 @@ input {
     top: -59px;
     left: 126px;
 }
+
+#grad1 {
+    background: red;
+    background: -webkit-linear-gradient(left, orange , yellow, green, blue, violet, cyan);
+    background: -o-linear-gradient(right, orange, yellow, green, blue, violet, cyan);
+    background: -moz-linear-gradient(right, orange, yellow, green, blue, violet, cyan);
+    background: linear-gradient(to right, orange , yellow, green, blue, violet, cyan);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 260%;
+    text-align: center;
+}

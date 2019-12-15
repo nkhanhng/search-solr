@@ -23,7 +23,7 @@
   </head>
 
   <body>
-    <h1>Tâm Duck Go</h1>
+    <div id="grad1">Tâm Duck Go</div>
       <input class="input100" type="text" name="text" id="search-input" placeholder="Search something" />
     
       <div class="wrap-input100 validate-input">
@@ -41,12 +41,12 @@
       <option name="post_author">author</option>
       <option name="post_content">content</option>
     </select>
-    <label>Number result per page</label>
+    <!-- <label>Number result per page</label>
     <select class="form-control form-control-sm limit">
       <option value="10">10</option>
       <option value="20">20</option>
       <option value="50">50</option>
-    </select>
+    </select> -->
     <label>Field list</label>
     <ul>
         <li><input type="checkbox" name="post_title" value="post_title" id="home_coo" class="Checkbox" >Title</li>
@@ -89,7 +89,8 @@
 
         function fetchData(text, page = 1, callback) {
           var option = $('.options option:selected').attr('name');
-          var limit = $('.limit option:selected').val();
+          // var limit = $('.limit option:selected').val();
+          var limit = 10;
           var fieldList = $('.Checkbox:checked').map(function() {
                         return this.value;
                     }).get().join(', ')
