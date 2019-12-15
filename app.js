@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const request = require('request')
-const baseUrl = 'http://localhost:8983/solr/new_core/select?q='
+const baseUrl = 'http://localhost:8983/solr/spiderum/select?q='
 const path = require('path')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
