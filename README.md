@@ -7,12 +7,17 @@
   
   + nvm install 10.17.0
   + nvm use 10.17.0
+  + npm install -g nodemon
   
 - Solr 8.2.0
 - Scrapy : install scrapy
   + Python3: pip install Scrapy
  
 ## Usage
+
+### start solr
+  cd /path/to/solrfolder/solr-8.3.1
+  bin/solr start
 
 ### run server nodejs 
   npm start
