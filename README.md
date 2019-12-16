@@ -19,6 +19,10 @@
   cd /path/to/solrfolder/solr-8.3.1
   bin/solr start
 
+  bin/solr create -c spiderum to create core name spiderrum
+  bin/post -c spiderum path/to/spiderum.json import data to core 
+
+
 ### run server nodejs 
   npm start
   
