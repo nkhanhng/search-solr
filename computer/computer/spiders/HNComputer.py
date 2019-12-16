@@ -6,6 +6,7 @@ import re
 
 def get_data(res):
     title = res.meta.get('title')[0]
+    link = res.url
     image = res.css(".fr-dib::attr(src)").extract()
     author = res.css(".author .username a::text").extract()[0]
     content = res.css("#post-content-view-edit div+ div::text").extract()
@@ -15,6 +16,7 @@ def get_data(res):
     items['post_author'] = re.sub('^\s+|\s+$|\s+(?=\s)', '', author)
     items['post_content'] = "".join(content)
     items['post_overview'] = overview
+    items['url_link'] = link
     if not image:
         items['post_imagelink'] = "default"
     else:
