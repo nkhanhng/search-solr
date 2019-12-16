@@ -3,12 +3,33 @@ import scrapy
 from ..items import PostItem
 import re
 
+
+def get_data(res):
+    title = res.meta.get('title')[0]
+    image = res.css(".fr-dib::attr(src)").extract()
+    author = res.css(".author .username a::text").extract()[0]
+    content = res.css("#post-content-view-edit div+ div::text").extract()
+    overview = content[0]
+    items = PostItem()
+    items['post_title'] = title
+    items['post_author'] = re.sub('^\s+|\s+$|\s+(?=\s)', '', author)
+    items['post_content'] = "".join(content)
+    items['post_overview'] = overview
+    if not image:
+        items['post_imagelink'] = "default"
+    else:
+        items['post_imagelink'] = image[0]
+
+    yield items
+
+
 class HncomputerSpider(scrapy.Spider):
     name = 'HNComputer'
     page_number = 2
     start_urls = [
         'https://spiderum.com/s/quan-diem-tranh-luan/hot?page=1'
     ]
+
 
     def parse(self, response):
         items = PostItem()
@@ -18,23 +39,14 @@ class HncomputerSpider(scrapy.Spider):
         # print(posts[1])
         for post in posts2:
             title = post.css(".title a::text").extract()
-            author = post.css(".author .username::text").extract()[0]
+            # print(title)
             link = "https://spiderum.com" + post.css(".title a::attr(href)").extract()[0]
-            content = post.css(".body::text").extract()[0]
-            image = post.css(".thumb img::attr(src)").extract()
-            # print(content)
+            # print(link)
+            if link:
+                req = scrapy.Request(url=link, callback=get_data)
+                req.meta['title'] = title
+                yield req
 
-            items['post_title'] = title
-            items['post_author'] = re.sub('^\s+|\s+$|\s+(?=\s)', '', author)
-            items['post_content'] = content
-            items['url_link'] = link
-            if not image:
-                items['post_imagelink'] = "null"
-            else:
-                items['post_imagelink'] = image[0]
-
-            yield items
-        #
         next_page = 'https://spiderum.com/s/quan-diem-tranh-luan/hot?page=' \
                     + str(HncomputerSpider.page_number)
         if HncomputerSpider.page_number <= 100:
