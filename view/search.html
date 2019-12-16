@@ -208,6 +208,16 @@
                     getResult();
                 }
             });
+            $(document).on("keydown", function (e) {
+                if (e.which == 13) {
+                    $("#search_button").addClass('press-enter');
+                }
+            });
+            $(document).on("keyup", function (e) {
+                if (e.which == 13) {
+                    $("#search_button").removeClass('press-enter');
+                }
+            });   
         });
     </script>
 </body>
