@@ -20,37 +20,46 @@
 
     <div class="wrap-input100 validate-input">
         <span class="wFncld z1asCe MZy1Rb" id="search_icon">
-          <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
-            </path>
-          </svg>
-        </span>
+      <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+        </path>
+      </svg>
+    </span>
     </div>
 
     <div class="btn" id="search_button" role="button">Search</div>
 
+    <section class="container">
+        <div style="float: left;">
+            <label id="search_by" style="font-size: 20px;position: relative; left: 20px;">Search by</label>
+            <select class="form-control form-control-sm options" id="search_by_options">
+        <option name="post_title">title</option>
+        <option name="post_author">author</option>
+        <option name="post_content">content</option>
+      </select>
+        </div>
 
-    <label>Search by</label>
-    <select class="form-control form-control-sm options">
-      <option name="post_title">title</option>
-      <option name="post_author">author</option>
-      <option name="post_content">content</option>
-    </select>
-    <!-- <label>Number result per page</label>
+        <!-- <label>Number result per page</label>
     <select class="form-control form-control-sm limit">
       <option value="10">10</option>
       <option value="20">20</option>
       <option value="50">50</option>
     </select> -->
-    <label>Field list</label>
-    <ul>
-        <li><input type="checkbox" name="post_title" value="post_title" id="home_coo" class="Checkbox">Title</li>
-        <li><input type="checkbox" name="post_author" value="post_author" id="home_cra" class="Checkbox"> Author</li>
-        <li><input type="checkbox" name="post_imagelink" value="post_imagelink" id="home_dec" class="Checkbox"> Image</li>
-        <li><input type="checkbox" name="post_content" value="post_content" id="home_ent" class="Checkbox"> Content</li>
-    </ul>
+        <div style="float: right;">
+            <label style="font-size: 20px;right: 665%;position: relative;color: violet;">Field list</label>
+            <ul style="    position: relative;right: 686%;">
+                <li><input type="checkbox" name="post_title" value="post_title" id="home_coo" class="Checkbox">Title</li>
+                <li><input type="checkbox" name="post_author" value="post_author" id="home_cra" class="Checkbox"> Author</li>
+                <li><input type="checkbox" name="post_imagelink" value="post_imagelink" id="home_dec" class="Checkbox"> Image
+                </li>
+                <li><input type="checkbox" name="post_content" value="post_content" id="home_ent" class="Checkbox"> Content</li>
+            </ul>
+        </div>
+    </section>
 
-    <div class="result"></div>
+
+    <div class="result" style="position: relative;padding-top: 17%;"></div>
     <div id="pagination"></div>
 
     <script>

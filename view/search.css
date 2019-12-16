@@ -8,8 +8,14 @@ input[type=text] {
     margin: 2% 9%;
     display: inline-block;
     border: 1px solid #ccc;
+    /* border-color: violet; */
     border-radius: 67px;
     box-sizing: border-box;
+}
+
+input[type=text]:focus {
+    border-color: violet;
+    border: 3px solid violet;
 }
 
 .btn {
@@ -32,11 +38,11 @@ input[type=text] {
 
 .btn:hover {
     cursor: pointer;
-    background-color: #3e8e41
+    /* background-color: #3e8e41 */
 }
 
 .btn:active {
-    background-color: #3e8e41;
+    /* background-color: #3e8e41; */
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
@@ -126,4 +132,19 @@ input {
     -webkit-text-fill-color: transparent;
     font-size: 260%;
     text-align: center;
+}
+
+#search_by_options {
+    width: 64%;
+    margin-left: 0px;
+    margin-right: 83px;
+    height: 40px;
+    padding: 0px 43px 0px 23px;
+    position: relative;
+    display: block;
+    border-radius: 35px;
+}
+
+#search_by {
+    color: orange;
 }
