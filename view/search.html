@@ -151,57 +151,8 @@
                         console.log(error);
                     }
                 });
-
             }
-            function fetchData(text, page = 1, callback) {
-                var option = $('.options option:selected').attr('name');
-                var fieldList = $('.Checkbox:checked').map(function () {
-                    return this.value;
-                }).get().join(', ')
-                var sortType = option + " " + $('.sort option:selected').val();
-                $.ajax({
-                    url: api_url,
-                    async: true,
-                    type: "GET",
-                    data: {
-                        text,
-                        page,
-                        searchOption: option,
-                        fields: fieldList,
-                        sort: sortType
-                    },
-                    success: function (response) {
-                        var result = response.response.docs;
-                        var numFound = response.response.numFound;
-                        totalPage = Math.ceil(numFound / limit);
-                        console.log(totalPage)
-                        $(".result").html("");
-                        var content = "";
-                        result.forEach(quote => {
-                            content +=
-                                '<div class="quote">' +
-                                "<h3>" +
-                                quote.post_title +
-                                "</h3>" +
-                                "<small>" +
-                                quote.post_author +
-                                "</small>" +
-                                "<img " + "src=" + quote.post_imagelink + ">" +
-                                "<p>" +
-                                quote.post_content +
-                                "</p>"
-                            "</div>";
-                        });
-                        $(".result").append(content);
-                        callback(text, totalPage);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-
-            }
-
+            
             $(".btn").click(getResult);
             $(document).on("keypress", function (e) {
                 if (e.which == 13) {
