@@ -35,7 +35,7 @@
     <section class="container">
         <div style="float: left;">
             <label id="search_by" style="font-size: 20px;position: relative; left: 20px;">Search by</label>
-            <select class="form-control form-control-sm options" id="search_by_options">
+            <select class="form-control form-control-sm options" style="width: 64%;margin-left: 0px;margin-right: 83px; height: 40px;padding: 0px 43px 0px 23px;position: relative;display: block;border-radius: 35px;">
                 <option name="post_title">title</option>
                 <option name="post_author">author</option>
                 <option name="post_content">content</option>
@@ -129,23 +129,43 @@
                         totalPage = Math.ceil(numFound / limit);
                         $(".result").html("");
                         var content = "";
+                        var i = 0;
                         result.forEach(quote => {
-                            content +=
-                                '<div class="quote">' +
-                                "<a href=" + quote.url_link + ">" +
-                                "<h3>" +
-                                quote.post_title +
-                                "</h3>" +
-                                "</a>" +
-                                "<h5>" +
-                                quote.post_author +
-                                "</h5>" +
-                                "<p>" +
-                                quote.post_overview +
-                                "</p>"
-                            "</div>";
+                            if (i === 0) {
+                                i++;
+                                content +=
+                                    '<div class="quote" id="first_quote">' +
+                                    "<a href=" + quote.url_link + ">" +
+                                    "<h3>" +
+                                    quote.post_title +
+                                    "</h3>" +
+                                    "</a>" +
+                                    "<h5>" +
+                                    quote.post_author +
+                                    "</h5>" +
+                                    "<p>" +
+                                    quote.post_overview +
+                                    "</p>";
+                                "</div>";
+                            }else{
+                                content +=
+                                    '<div class="quote">' +
+                                    "<a href=" + quote.url_link + ">" +
+                                    "<h3>" +
+                                    quote.post_title +
+                                    "</h3>" +
+                                    "</a>" +
+                                    "<h5>" +
+                                    quote.post_author +
+                                    "</h5>" +
+                                    "<p>" +
+                                    quote.post_overview +
+                                    "</p>";
+                                "</div>";
+                            }
                         });
                         $(".result").append(content);
+
                         callback(text, totalPage);
                     },
                     error: function (error) {
@@ -156,17 +176,17 @@
             
             $(".btn").click(getResult);
             $(document).on("keypress", function (e) {
-                if (e.which == 13) {
+                if (e.which === 13) {
                     getResult();
                 }
             });
             $(document).on("keydown", function (e) {
-                if (e.which == 13) {
+                if (e.which === 13) {
                     $("#search_button").addClass('press-enter');
                 }
             });
             $(document).on("keyup", function (e) {
-                if (e.which == 13) {
+                if (e.which === 13) {
                     $("#search_button").removeClass('press-enter');
                 }
             });   

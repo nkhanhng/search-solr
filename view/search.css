@@ -47,6 +47,11 @@ input[type=text]:focus {
     transform: translateY(4px);
 }
 
+.btn.press-enter{
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
 #search_button {
     position: relative;
     bottom: 34px;
@@ -147,4 +152,11 @@ input {
 
 #search_by {
     color: orange;
+}
+
+#first_quote{
+    position: relative;
+    top: -173px;
+    padding-left: 6%;
+    padding-right: 5%;
 }
