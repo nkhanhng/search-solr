@@ -2,196 +2,230 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/twbs-pagination.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 
-    <link rel="stylesheet" href="./search.css" />
+    <link rel="stylesheet" href="./search.css"/>
     <title>Tâm Duck Go</title>
 </head>
 
 <body>
-    <div id="grad1">Tâm Duck Go</div>
-    <input class="input100" type="text" name="text" id="search-input" placeholder="Search something" />
+<div id="grad1">Tâm Duck Go</div>
+<input class="input100" type="text" name="text" id="search-input" placeholder="Search something"/>
 
-    <div class="wrap-input100 validate-input">
+<div class="wrap-input100 validate-input">
         <span class="wFncld z1asCe MZy1Rb" id="search_icon">
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path
-                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                        d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
                 </path>
             </svg>
         </span>
+</div>
+
+<div class="btn" id="search_button" role="button">Search</div>
+
+<section class="container">
+    <div style="float: left;">
+        <label id="search_by" style="font-size: 20px;position: relative; left: 20px;">Search by</label>
+        <select class="form-control form-control-sm options"
+                style="width: 64%;margin-left: 0px;margin-right: 83px; height: 40px;padding: 0px 43px 0px 23px;position: relative;display: block;border-radius: 35px;">
+            <option name="post_title">title</option>
+            <option name="post_author">author</option>
+            <option name="post_content">content</option>
+        </select>
     </div>
-
-    <div class="btn" id="search_button" role="button">Search</div>
-
-    <section class="container">
-        <div style="float: left;">
-            <label id="search_by" style="font-size: 20px;position: relative; left: 20px;">Search by</label>
-            <select class="form-control form-control-sm options" style="width: 64%;margin-left: 0px;margin-right: 83px; height: 40px;padding: 0px 43px 0px 23px;position: relative;display: block;border-radius: 35px;">
-                <option name="post_title">title</option>
-                <option name="post_author">author</option>
-                <option name="post_content">content</option>
-            </select>
-        </div>
-        <!-- <label>Number result per page</label>
-    <select class="form-control form-control-sm limit">
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="50">50</option>
-    </select> -->
-        <div style="float: right;">
-            <label style="font-size: 20px;right: 665%;position: relative;color: #f37867;">Field list</label>
-            <ul style="    position: relative;right: 686%;">
-                <li><input type="checkbox" name="post_title" value="post_title" id="home_coo" class="Checkbox">Title
-                </li>
-                <li><input type="checkbox" name="post_author" value="post_author" id="home_cra" class="Checkbox"> Author
-                </li>
-                <li><input type="checkbox" name="post_imagelink" value="post_imagelink" id="home_dec" class="Checkbox">
-                    Image
-                </li>
-                <li><input type="checkbox" name="post_content" value="post_content" id="home_ent" class="Checkbox">
-                    Content</li>
-            </ul>
-        </div>
-    </section>
-   
-
-    <div style="position: relative; left: 19%; margin-left: 17%;">
-        <label style="font-size: 20px;position: relative;color: violet;">Sort</label>
-        <select class=" form-control form-control-sm sort" id="search_by_options" style="position: relative;width: 13%;margin-top: 0%;left: -2%;">
-            <option value="asc">Asc</option>
-            <option value="desc">Desc</option>
-            </select>
+    <!-- <label>Number result per page</label>
+<select class="form-control form-control-sm limit">
+  <option value="10">10</option>
+  <option value="20">20</option>
+  <option value="50">50</option>
+</select> -->
+    <div style="float: right;">
+        <label style="font-size: 20px;right: 665%;position: relative;color: #f37867;">Field list</label>
+        <ul style="    position: relative;right: 686%;">
+            <li><input type="checkbox" name="post_title" value="post_title" id="home_coo" class="Checkbox">Title
+            </li>
+            <li><input type="checkbox" name="post_author" value="post_author" id="home_cra" class="Checkbox"> Author
+            </li>
+            <li><input type="checkbox" name="post_imagelink" value="post_imagelink" id="home_dec" class="Checkbox">
+                Image
+            </li>
+            <li><input type="checkbox" name="post_content" value="post_content" id="home_ent" class="Checkbox">
+                Content
+            </li>
+        </ul>
     </div>
+</section>
 
-    <div class="result" style="position: relative;padding-top: 17%; top: 71px;"></div>
-    <div id="pagination"></div>
 
-    <script>
-        var page = 1;
-        var limit = 10;
-        $(function () {
-            var api_url = "http://localhost:3000/api/search/";
-            var pageNumber = 1;
-            var totalPage;
-            var getResult = function () {
-                var text = $("#search-input").val();
-                console.log(text)
-                if (text) {
-                    fetchData(text, pageNumber, applyPagination);
-                    // applyPagination(text,totalPage)
-                }
-            };
+<div style="position: relative; left: 19%; margin-left: 17%;">
+    <label style="font-size: 20px;position: relative;color: violet;">Sort</label>
+    <select class=" form-control form-control-sm sort" id="search_by_options"
+            style="position: relative;width: 13%;margin-top: 0%;left: -2%;">
+        <option value="asc">Asc</option>
+        <option value="desc">Desc</option>
+    </select>
+</div>
 
-            function applyPagination(text, totalPage) {
-                $("#pagination").twbsPagination({
-                    totalPages: totalPage,
-                    visiblePages: 6,
-                    next: "Next",
-                    prev: "Prev",
-                    onPageClick: function (event, page) {
-                        fetchData(text, page);
-                    }
-                });
+<div class="result" style="position: relative;padding-top: 17%; top: 71px;"></div>
+<div id="pagination"></div>
+
+<script>
+    var page = 1;
+    var limit = 10;
+    $(function () {
+        var api_url = "http://localhost:3000/api/search/";
+        var pageNumber = 1;
+        var totalPage;
+        var getResult = function () {
+            var text = $("#search-input").val();
+            console.log(text)
+            if (text) {
+                fetchData(text, pageNumber, applyPagination);
+                // applyPagination(text,totalPage)
             }
+        };
 
-            function fetchData(text, page = 1, callback) {
-                var option = $('.options option:selected').attr('name');
-                // var limit = $('.limit option:selected').val();
-                var limit = 10;
-                var fieldList = $('.Checkbox:checked').map(function () {
-                    return this.value;
-                }).get().join(', ')
-                var sortType = option + " " + $('.sort option:selected').val();
-                $.ajax({
-                    url: api_url,
-                    async: true,
-                    type: "GET",
-                    data: {
-                        text,
-                        page,
-                        searchOption: option,
-                        limit,
-                        fields: fieldList,
-                        sort: sortType
-                    },
-                    success: function (response) {
-                        var result = response.response.docs;
-                        var numFound = response.response.numFound;
-                        totalPage = Math.ceil(numFound / limit);
-                        $(".result").html("");
-                        var content = "";
-                        var i = 0;
-                        result.forEach(quote => {
-                            if (i === 0) {
-                                i++;
-                                content +=
-                                    '<div class="quote" id="first_quote">' +
-                                    "<a href=" + quote.url_link + ">" +
-                                    "<h3>" +
-                                    quote.post_title +
-                                    "</h3>" +
-                                    "</a>" +
-                                    "<h5>" +
-                                    quote.post_author +
-                                    "</h5>" +
-                                    "<p>" +
-                                    quote.post_overview +
-                                    "</p>";
-                                "</div>";
-                            }else{
-                                content +=
-                                    '<div class="quote">' +
-                                    "<a href=" + quote.url_link + ">" +
-                                    "<h3>" +
-                                    quote.post_title +
-                                    "</h3>" +
-                                    "</a>" +
-                                    "<h5>" +
-                                    quote.post_author +
-                                    "</h5>" +
-                                    "<p>" +
-                                    quote.post_overview +
-                                    "</p>";
-                                "</div>";
-                            }
-                        });
-                        $(".result").append(content);
-
-                        callback(text, totalPage);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            }
-            
-            $(".btn").click(getResult);
-            $(document).on("keypress", function (e) {
-                if (e.which === 13) {
-                    getResult();
+        function applyPagination(text, totalPage) {
+            $("#pagination").twbsPagination({
+                totalPages: totalPage,
+                visiblePages: 6,
+                next: "Next",
+                prev: "Prev",
+                onPageClick: function (event, page) {
+                    fetchData(text, page);
                 }
             });
-            $(document).on("keydown", function (e) {
-                if (e.which === 13) {
-                    $("#search_button").addClass('press-enter');
+        }
+
+        function fetchData(text, page = 1, callback) {
+            var option = $('.options option:selected').attr('name');
+            // var limit = $('.limit option:selected').val();
+            var limit = 10;
+            var fieldList = $('.Checkbox:checked').map(function () {
+                return this.value;
+            }).get().join(', ')
+            var sortType = option + " " + $('.sort option:selected').val();
+            $.ajax({
+                url: api_url,
+                async: true,
+                type: "GET",
+                data: {
+                    text,
+                    page,
+                    searchOption: option,
+                    limit,
+                    fields: fieldList,
+                    sort: sortType
+                },
+                success: function (response) {
+                    var result = response.response.docs;
+                    var numFound = response.response.numFound;
+                    totalPage = Math.ceil(numFound / limit);
+                    $(".result").html("");
+                    var content = "";
+                    var i = 0;
+                    result.forEach(quote => {
+                        var urlLink = quote.url_link.split("/");
+                        console.log(urlLink);
+                        var urlLinkShorten = urlLink[0] + "://" + urlLink[2] + " > " + text_truncate(urlLink[4],26);
+                        if (i === 0) {
+                            i++;
+                            content +=
+                                '<br>'+
+                                '<br>'+
+                                '<div class="quote" id="first_quote">' +
+                                "<a href=" + quote.url_link + ">" +
+                                "<h3>" +
+                                quote.post_title +
+                                "</h3>" +
+                                "</a>" +
+                                "<a id=\"preview_link\" href=" + quote.url_link + ">" +
+                                "<h5>" +
+                                urlLinkShorten +
+                                "</h5>" +
+                                "</a>" +
+                                "<h5>" +
+                                quote.post_author +
+                                "</h5>" +
+                                "<p>" +
+                                quote.post_overview +
+                                "</p>";
+                            "</div>";
+                        } else {
+                            content +=
+                                '<br>'+
+                                '<br>'+
+                                '<div class="quote">' +
+                                "<a href=" + quote.url_link + ">" +
+                                "<h3>" +
+                                quote.post_title +
+                                "</h3>" +
+                                "</a>" +
+                                "<a  id=\"preview_link\" href=" + quote.url_link + ">" +
+                                "<h5>" +
+                                urlLinkShorten +
+                                "</h5>" +
+                                "</a>" +
+                                "<h5>" +
+                                quote.post_author +
+                                "</h5>" +
+                                "<p>" +
+                                quote.post_overview +
+                                "</p>";
+                            "</div>";
+                        }
+                    });
+                    $(".result").append(content);
+
+                    callback(text, totalPage);
+                },
+                error: function (error) {
+                    console.log(error);
                 }
             });
-            $(document).on("keyup", function (e) {
-                if (e.which === 13) {
-                    $("#search_button").removeClass('press-enter');
-                }
-            });   
+        }
+
+        function text_truncate(str, length, ending) {
+            if (length == null) {
+                length = 100;
+            }
+            if (ending == null) {
+                ending = '...';
+            }
+            if (str.length > length) {
+                return str.substring(0, length - ending.length) + ending;
+            } else {
+                return str;
+            }
+        }
+
+        $(".btn").click(getResult);
+        $(document).on("keypress", function (e) {
+            if (e.which === 13) {
+                getResult();
+            }
         });
-    </script>
+        $(document).on("keydown", function (e) {
+            if (e.which === 13) {
+                $("#search_button").addClass('press-enter');
+            }
+        });
+        $(document).on("keyup", function (e) {
+            if (e.which === 13) {
+                $("#search_button").removeClass('press-enter');
+            }
+        });
+    });
+</script>
 </body>
 
 </html>

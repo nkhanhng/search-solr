@@ -43,12 +43,12 @@ input[type=text]:focus {
 
 .btn:active {
     /* background-color: #3e8e41; */
-    box-shadow: 0 5px #666;
+    box-shadow: 0 4px #666;
     transform: translateY(4px);
 }
 
 .btn.press-enter{
-    box-shadow: 0 5px #666;
+    box-shadow: 0 4px #666;
     transform: translateY(4px);
 }
 
@@ -159,4 +159,8 @@ input {
     top: -173px;
     padding-left: 6%;
     padding-right: 5%;
+}
+
+#preview_link{
+    color: #006621;
 }
