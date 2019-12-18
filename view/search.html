@@ -5,13 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> -->
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/twbs-pagination.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
+    <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="./search.css" />
     <title>Red Best</title>
 </head>
@@ -81,34 +81,29 @@
     <div id="pagination"></div>
 
     <script>
-        var page = 1;
         var limit = 10;
         $(function () {
             var api_url = "http://localhost:3000/api/search/";
             var pageNumber = 1;
             var totalPage;
             var getResult = function () {
-                var text = $("#search-input").val();
-                console.log(text)
-                if (text) {
-                    fetchData(text, pageNumber, applyPagination);
-                    // applyPagination(text,totalPage)
-                }
+                fetchData(pageNumber, applyPagination);
             };
 
-            function applyPagination(text, totalPage) {
+            function applyPagination(totalPage) {
+                // $("#pagination").twbsPagination('destroy')
                 $("#pagination").twbsPagination({
                     totalPages: totalPage,
-                    visiblePages: 6,
                     next: "Next",
                     prev: "Prev",
                     onPageClick: function (event, page) {
-                        fetchData(text, page);
+                        fetchData(page);
                     }
                 });
             }
 
-            function fetchData(text, page = 1, callback) {
+            function fetchData(page = 1, callback) {
+                var text = $("#search-input").val();
                 var option = $('.options option:selected').attr('name');
                 // var limit = $('.limit option:selected').val();
                 var limit = 10;
@@ -132,7 +127,6 @@
                         var result = response.response.docs;
                         var numFound = response.response.numFound;
                         var highlight = response.highlighting                    
-                        
                         totalPage = Math.ceil(numFound / limit);
                         $(".result").html("");
                         var content = "";
@@ -171,7 +165,7 @@
                         $(".no-result").html("Found " + numFound + " result(s):")
                         $(".result").append(content);
 
-                        callback(text, totalPage);
+                        callback(totalPage);
                     },
                     error: function (error) {
                         console.log(error);

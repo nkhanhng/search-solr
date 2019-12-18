@@ -12,7 +12,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(express.static(__dirname + '/view'));
-
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 const corsOptions = {
     origin: 'http://localhost:3000',
     optionsSuccessStatus: 200
