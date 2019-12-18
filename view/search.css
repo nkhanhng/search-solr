@@ -154,13 +154,43 @@ input {
     color: orange;
 }
 
-#first_quote{
+/* #first_quote{
     position: relative;
     top: -173px;
     padding-left: 6%;
     padding-right: 5%;
+} */
+
+.quote {
+    position: relative;
+    top: -173px;
+    margin-left: 6%;
+    margin-right: 5%;
+    transition: .5s ease;
+
+}
+
+.quote:hover{
+    box-shadow:
+1px 1px #373737,
+2px 2px #373737,
+3px 3px #373737,
+4px 4px #373737,
+5px 5px #373737,
+6px 6px #373737;
+-webkit-transform: translateX(-3px);
+transform: translateX(-3px);
+transition: .5s ease;
+
 }
 
 #preview_link{
     color: #006621;
+}
+
+.no-result{
+    position: relative;
+    top: 118px;
+    left: 80px;
+    font-weight: bold;
 }

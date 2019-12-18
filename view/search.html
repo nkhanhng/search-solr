@@ -75,6 +75,8 @@
     </select>
 </div>
 
+<div class="no-result"></div>
+
 <div class="result" style="position: relative;padding-top: 17%; top: 71px;"></div>
 <div id="pagination"></div>
 
@@ -134,33 +136,10 @@
                     var content = "";
                     var i = 0;
                     result.forEach(quote => {
+                        i++
                         var urlLink = quote.url_link.split("/");
                         console.log(urlLink);
                         var urlLinkShorten = urlLink[0] + "://" + urlLink[2] + " > " + text_truncate(urlLink[4],26);
-                        if (i === 0) {
-                            i++;
-                            content +=
-                                '<br>'+
-                                '<br>'+
-                                '<div class="quote" id="first_quote">' +
-                                "<a href=" + quote.url_link + ">" +
-                                "<h3>" +
-                                quote.post_title +
-                                "</h3>" +
-                                "</a>" +
-                                "<a id=\"preview_link\" href=" + quote.url_link + ">" +
-                                "<h5>" +
-                                urlLinkShorten +
-                                "</h5>" +
-                                "</a>" +
-                                "<h5>" +
-                                quote.post_author +
-                                "</h5>" +
-                                "<p>" +
-                                quote.post_overview +
-                                "</p>";
-                            "</div>";
-                        } else {
                             content +=
                                 '<br>'+
                                 '<br>'+
@@ -180,10 +159,11 @@
                                 "</h5>" +
                                 "<p>" +
                                 quote.post_overview +
-                                "</p>";
+                                "</p>"+
                             "</div>";
-                        }
+                        
                     });
+                    $(".no-result").html("Found " + numFound + " result(s):")
                     $(".result").append(content);
 
                     callback(text, totalPage);
