@@ -92,6 +92,9 @@
 
             function applyPagination(totalPage) {
                 // $("#pagination").twbsPagination('destroy')
+                $('#pagination').empty();
+                $('#pagination').removeData("twbs-pagination");
+                // $('#pagination').unbind("page");
                 $("#pagination").twbsPagination({
                     totalPages: totalPage,
                     next: "Next",
