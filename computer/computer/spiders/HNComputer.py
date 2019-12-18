@@ -11,12 +11,14 @@ def get_data(res):
     author = res.css(".author .username a::text").extract()[0]
     content = res.css("#post-content-view-edit div+ div::text").extract()
     overview = content[0]
+    category = res.css(".created a::text").extract()[0]
     items = PostItem()
     items['post_title'] = title
     items['post_author'] = re.sub('^\s+|\s+$|\s+(?=\s)', '', author)
     items['post_content'] = "".join(content)
     items['post_overview'] = overview
     items['url_link'] = link
+    items['category'] = category
     if not image:
         items['post_imagelink'] = "default"
     else:
@@ -29,13 +31,11 @@ class HncomputerSpider(scrapy.Spider):
     name = 'HNComputer'
     page_number = 2
     start_urls = [
-        'https://spiderum.com/s/quan-diem-tranh-luan/hot?page=1'
+        'https://spiderum.com/s/all/hot?page=1'
     ]
 
 
     def parse(self, response):
-        items = PostItem()
-
         posts = response.css(".feed-list .feed-post")
         posts2 = posts[1:]
         # print(posts[1])
@@ -51,6 +51,6 @@ class HncomputerSpider(scrapy.Spider):
 
         next_page = 'https://spiderum.com/s/quan-diem-tranh-luan/hot?page=' \
                     + str(HncomputerSpider.page_number)
-        if HncomputerSpider.page_number <= 100:
+        if HncomputerSpider.page_number <= 120:
             HncomputerSpider.page_number += 1
             yield response.follow(next_page, callback=self.parse)

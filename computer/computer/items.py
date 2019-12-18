@@ -15,5 +15,6 @@ class PostItem(scrapy.Item):
     post_content = scrapy.Field()
     post_overview = scrapy.Field()
     post_imagelink = scrapy.Field()
+    category = scrapy.Field()
     url_link = scrapy.Field()
     pass
